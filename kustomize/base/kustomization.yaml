@@ -8,4 +8,4 @@ namespace: hello-gitops
 images:
 - name: hello-gitops
   newName: morgancom/hello-gitops
-  newTag: c278b080de20a666e7f23c15a9f6518074d57c4f
+  newTag: f9275fa6498a19b8b7f4af03d9f9c0930ff048e3
