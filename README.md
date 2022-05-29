@@ -189,14 +189,34 @@ git push origin master
 
 At the end of the workflow, Kustomize manifests are referencing the newly built Docker image. We will configure ArgoCD to observe changes to Kustomize files and update the application in the K8s cluster.
 - Login to ArgoCD
+
 - See [the official documentation](https://argoproj.github.io/argo-cd/getting_started/) for a step by step guide
-- add cluster failed with 'Failed to wait for service account secret: timed out waiting for the condition' (solution: https://github.com/argoproj/argo-cd/issues/9422)
-- You will need to enter 
-  - your forked GitHub repository address
-  - `HEAD` or `master` revision
-  - `kustomize/base` as the `Path` parameter
-  - `hello-gitops` as namespace
-- Application configuration should look like this
+
+- Add new cluster
+
+  ```shell
+  $ kubectl config current-context
+  admin@kubernetes
+  $ argocd cluster add admin@kubernetes
+  ```
+
+  add cluster failed with 'Failed to wait for service account secret: timed out waiting for the condition' (solution: https://github.com/argoproj/argo-cd/issues/9422)
+
+- Add new repository
+
+  ![](doc/argocd-repository-connect.png)
+
+- Create argocd application 
+
+  - from command line: `argocd app create hello-gitops --repo https://github.com/wayne-beep/workshop-hello-gitops.git --path kustomize/base --dest-server https://192.168.56.11:6443 --dest-namespace hello-gitops`
+  - from web ui
+    - You will need to enter 
+    - your forked GitHub repository address
+    - `HEAD` or `master` revision
+    - `kustomize/base` as the `Path` parameter
+    - `hello-gitops` as namespace
+    - Application configuration should look like this
+
 
 ![](doc/argocd_project.png)
 
