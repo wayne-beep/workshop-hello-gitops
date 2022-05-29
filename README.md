@@ -190,6 +190,7 @@ git push origin master
 At the end of the workflow, Kustomize manifests are referencing the newly built Docker image. We will configure ArgoCD to observe changes to Kustomize files and update the application in the K8s cluster.
 - Login to ArgoCD
 - See [the official documentation](https://argoproj.github.io/argo-cd/getting_started/) for a step by step guide
+- add cluster failed with 'Failed to wait for service account secret: timed out waiting for the condition' (solution: https://github.com/argoproj/argo-cd/issues/9422)
 - You will need to enter 
   - your forked GitHub repository address
   - `HEAD` or `master` revision
